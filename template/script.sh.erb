@@ -13,8 +13,11 @@ setup_env () {
   # SINGULARITY_BINDPATH is being used to bind all RStudio's requirements from
   # the host into the guest, and so those values may vary between sites.
 
-  module use /usr/local/share/lmodfiles/project/ondemand
-  module load <%= context.version %> rstudio_container/2019Feb
+  module use /uufs/chpc.utah.edu/sys/installdir/rstudio-singularity/modulefiles
+  module load singularity rstudio_singularity/3.5.3
+
+#  module use /usr/local/share/lmodfiles/project/ondemand
+#  module load <%= context.version %> rstudio_container/2019Feb
 }
 setup_env
 
@@ -51,11 +54,15 @@ cd "${HOME}"
 # Output debug info
 module list
 
+# echo old TMPDIR $TMPDIR
+export TMPDIR=`mktemp -d`
+# echo new TMPDIR $TMPDIR
+
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-singularity run -B "$TMPDIR:/tmp" "$RSTUDIO_SERVER_IMAGE" \
+singularity run -B "$TMPDIR:/tmp" "$RSTUDIO_SINGULARITY_IMAGE" \
  --www-port "${port}" \
  --auth-none 0 \
  --auth-pam-helper-path "${RSTUDIO_AUTH}" \
