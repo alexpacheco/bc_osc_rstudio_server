@@ -6,6 +6,8 @@
 An interactive app designed for OSC OnDemand that launches an RStudio Server
 within an Owens batch job.
 
+Modifications made for CHPC's notchpeak-shared partition.
+
 ## Prerequisites
 
 This Batch Connect app requires the following software be installed on the
