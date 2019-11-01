@@ -10,12 +10,12 @@ attributes:
     value: 1
     help: "Maximum number of CPU cores on notchpeak-shared-short is 32, on other partition 32 or 40."
     min: 1
-    max: 40 
-  bc_num_hours:                                   |  -------------------------------------------------
+    max: 40
+  bc_num_hours:
+    label: "Number of hours"
     value: 1   
     min: 1
     max: 72
-    step: 1
     help: "Maximum wall time on notchpeak-shared-short is 8 hours, otherwise 72 hours."
   bc_account:
     label: "Account"
