@@ -1,5 +1,5 @@
 ---
-name: RStudio Server on Notchpeak shared partition
+name: RStudio Server on Notchpeak 
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect

@@ -1,29 +1,28 @@
 ---
-title: "RStudio server on Notchpeak shared"
+title: "RStudio server on Notchpeak"
 cluster: "notchpeak"
 description: |
-  This app will launch RStudio server on one Notchpeak shared node. 
+  This app will launch RStudio server on one Notchpeak node. 
 attributes:
   num_cores:
     widget: "number_field"
     label: "Number of cores"
     value: 1
-    help: "Maximum number of CPU cores is 32"
+    help: "Maximum number of CPU cores on notchpeak-shared-short is 32, on other partition 32 or 40."
     min: 1
-    max: 32
-    step: 1
-  bc_num_hours:
-    value: 1
+    max: 40 
+  bc_num_hours:                                   |  -------------------------------------------------
+    value: 1   
     min: 1
-    max: 8
+    max: 72
     step: 1
-    help: "Maximum notchpeak-shared walltime is 8 hours"
+    help: "Maximum wall time on notchpeak-shared-short is 8 hours, otherwise 72 hours."
   bc_account:
     label: "Account"
-    value: "notchpeak-shared"
+    value: "notchpeak-shared-short"
   bc_queue:
     label: "Partition"
-    value: "notchpeak-shared"
+    value: "notchpeak-shared-short"
   version:
     widget: select
     label: "R version"
