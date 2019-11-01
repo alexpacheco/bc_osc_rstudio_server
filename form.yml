@@ -15,8 +15,8 @@ attributes:
     label: "Number of hours"
     value: 1   
     min: 1
-    max: 72
-    help: "Maximum wall time on notchpeak-shared-short is 8 hours, otherwise 72 hours."
+    max: 336
+    help: "Maximum wall time on notchpeak-shared-short is 8 hours, on notchpeak and owner-guest 72 hours, on owner nodes 14 days."
   bc_account:
     label: "Account"
     value: "notchpeak-shared-short"
