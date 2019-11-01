@@ -8,6 +8,12 @@ within an Owens batch job.
 
 Modifications made for CHPC's notchpeak-shared partition.
 
+As of Nov19 using Virginia Tech's R containers, as compared to previously used OSC's. The main reason for this is that VT includes some commonly used R packages in the container so users don't have to install them, and, they have different containers for different needs (Bioinformatics, Geospatial).
+
+The containers are at: [https://hub.docker.com/u/rsettlag](https://hub.docker.com/u/rsettlag)
+VT's OOD apps are at: [https://github.com/rsettlage/ondemand2](https://github.com/rsettlage/ondemand2)
+
+
 ## Prerequisites
 
 This Batch Connect app requires the following software be installed on the

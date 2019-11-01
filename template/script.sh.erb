@@ -14,7 +14,8 @@ setup_env () {
   # the host into the guest, and so those values may vary between sites.
 
   module use /uufs/chpc.utah.edu/sys/installdir/rstudio-singularity/modulefiles
-  module load singularity rstudio_singularity/3.5.3
+  module load singularity rstudio_singularity/<%= context.version %>
+#  module load singularity rstudio_singularity/3.6.1-bio
 
 #  module use /usr/local/share/lmodfiles/project/ondemand
 #  module load <%= context.version %> rstudio_container/2019Feb
@@ -58,13 +59,17 @@ module list
 export TMPDIR=`mktemp -d`
 # echo new TMPDIR $TMPDIR
 
+## fix rstudio active session error on start
+find ~/.rstudio/sessions/active/*/session-persistent-state -type f | xargs sed -i '' -e 's/abend="1"/abend="0"/'
+
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-singularity run -B "$TMPDIR:/tmp" "$RSTUDIO_SINGULARITY_IMAGE" \
- --www-port "${port}" \
- --auth-none 0 \
- --auth-pam-helper-path "${RSTUDIO_AUTH}" \
- --auth-encrypt-password 0 \
- --rsession-path "${RSESSION_WRAPPER_FILE}"
+singularity exec -B "$TMPDIR:/tmp" "$RSTUDIO_SINGULARITY_IMAGE" rserver \
+ --www-port="${port}" \
+ --auth-none=0 \
+ --auth-pam-helper-path="${RSTUDIO_AUTH}" \
+ --auth-encrypt-password=0 \
+ --rsession-path="${RSESSION_WRAPPER_FILE}" \
+ --server-app-armor-enabled=0

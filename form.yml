@@ -29,7 +29,9 @@ attributes:
     label: "R version"
     help: "This defines the version of R you want to load."
     options:
-      - [ "3.5.3", ""]
+      - [ "R 3.6.1 Basic packages", "3.6.1-basic" ]
+      - [ "R 3.6.1 Bioinformatics packages", "3.6.1-bio" ]
+      - [ "R 3.6.1 Geospatial packages", "3.6.1-geospatial"]
 form:
   - version
   - num_cores
