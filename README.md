@@ -10,8 +10,25 @@ Modifications made for CHPC's notchpeak-shared partition.
 
 As of Nov19 using Virginia Tech's R containers, as compared to previously used OSC's. The main reason for this is that VT includes some commonly used R packages in the container so users don't have to install them, and, they have different containers for different needs (Bioinformatics, Geospatial).
 
-The containers are at: [https://hub.docker.com/u/rsettlag](https://hub.docker.com/u/rsettlag)
+The containers are at: [https://hub.docker.com/u/rsettlag](https://hub.docker.com/u/rsettlag)  
 VT's OOD apps are at: [https://github.com/rsettlage/ondemand2](https://github.com/rsettlage/ondemand2)
+
+Due to a few hard coded pieces we hand edit the containers as follows:  
+```
+$ singularity build --sandbox ood-rstudio-bio_3.6.1 docker://rsettlag/ood-rstudio-bio:3.6.1  
+sudo /uufs/chpc.utah.edu/sys/installdir/singularity3/std/bin/singularity shell --writable ood-rstudio-bio_3.6.1  
+apt-get update && apt-get install apt-file -y && apt-file update && apt-get install vim -y  
+vi /usr/local/lib/R/etc/Rprofile.site  
+```
+- remove:  
+```
+ Sys.setenv(http_proxy="http://uaserve.cc.vt.edu:8080")  
+ Sys.setenv(https_proxy="http://uaserve.cc.vt.edu:8080")  
+ Sys.setenv(R_ENVIRON_USER="~/.Renviron.OOD")  
+ Sys.setenv(R_LIBS_USER="~/R/OOD/3.6.1")  
+
+$ sudo singularity build ood-rstudio-bio_3.6.1.sif ood-rstudio-bio_3.6.1/  
+```
 
 
 ## Prerequisites
