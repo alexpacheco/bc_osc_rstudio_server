@@ -16,7 +16,7 @@ VT's OOD apps are at: [https://github.com/rsettlage/ondemand2](https://github.co
 Due to a few hard coded pieces we hand edit the containers as follows:  
 ```
 $ singularity build --sandbox ood-rstudio-bio_3.6.1 docker://rsettlag/ood-rstudio-bio:3.6.1  
-sudo /uufs/chpc.utah.edu/sys/installdir/singularity3/std/bin/singularity shell --writable ood-rstudio-bio_3.6.1  
+sudo singularity shell --writable ood-rstudio-bio_3.6.1  
 apt-get update && apt-get install apt-file -y && apt-file update && apt-get install vim -y  
 vi /usr/local/lib/R/etc/Rprofile.site  
 ```
