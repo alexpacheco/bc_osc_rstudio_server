@@ -26,11 +26,14 @@ attributes:
   version:
     widget: select
     label: "R version"
-    help: "This defines the version of R you want to load."
+    help: "This defines the version of R you want to load. Please note that the 3.6.1 version packages are being deprecated. Use the 3.6.2 version instead, you may need to re-install your own libraries. See output from '.libPaths()' function for the location of the user installed libraries."
     options:
       - [ "R 3.6.1 Basic packages", "3.6.1-basic" ]
       - [ "R 3.6.1 Bioinformatics packages", "3.6.1-bio" ]
       - [ "R 3.6.1 Geospatial packages", "3.6.1-geospatial"]
+      - [ "R 3.6.2 Basic packages", "3.6.2-basic"]
+      - [ "R 3.6.2 Bioconductor packages", "3.6.2-bioconductor"]
+      - [ "R 3.6.2 Geospatial packages", "3.6.2-geospatial"]
 form:
   - version
   - num_cores

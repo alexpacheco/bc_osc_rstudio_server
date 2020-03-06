@@ -8,6 +8,15 @@ within an Owens batch job.
 
 Modifications made for CHPC's notchpeak-shared partition.
 
+As of Mar20 we are using Docker containers from rocker and bioconductor:
+- base R image, based on [https://hub.docker.com/r/rocker/rstudio](https://hub.docker.com/r/rocker/rstudio)
+- geospatial R image, based on [https://hub.docker.com/r/rocker/geospatial](https://hub.docker.com/r/rocker/geospatial) - this has installed gdal and rgdal, among other things.
+- bioinfomatics R image, based on [https://hub.docker.com/r/bioconductor/bioconductor_docker](https://hub.docker.com/r/bioconductor/bioconductor_docker) - this has installed most if not all bioconductor system dependencies, like hdf5, udunits, gdal, ... Therefore user based R library installations should work as these system based dependencies are present.
+
+We build the container images and store them locally as e.g. ```singularity build ood-rstudio-rocker_3.6.2.sif docker://rocker/rstudio```. In the [environment modules](https://github.com/CHPC-UofU/bc_osc_rstudio_server/tree/master/modulefiles), we define paths to these containers, and also environment variables that set things like the user R libraries and environment file location, and the OOD's helper variables used in ```template/script.sh.erb```.
+
+Stuff below is deprecated now - the rocker and bioconductor based Docker images work without need to hand modify the container
+
 As of Nov19 using Virginia Tech's R containers, as compared to previously used OSC's. The main reason for this is that VT includes some commonly used R packages in the container so users don't have to install them, and, they have different containers for different needs (Bioinformatics, Geospatial).
 
 The containers are at: [https://hub.docker.com/u/rsettlag](https://hub.docker.com/u/rsettlag)  

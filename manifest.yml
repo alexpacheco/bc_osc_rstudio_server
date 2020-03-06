@@ -1,10 +1,10 @@
 ---
-name: RStudio Server on Notchpeak 
+name: Shiny App on Notchpeak 
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch [RStudio Server] an IDE for [R] on one node of the [Notchpeak cluster].
+  This app will launch [Shiny App] an IDE for [R] on one node of the [Notchpeak cluster].
 
-  [RStudio Server]: https://www.rstudio.com/products/rstudio-server/
+  [Shiny App]: https://shiny.rstudio.com/
   [R]: https://www.r-project.org/
