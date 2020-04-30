@@ -1,10 +1,16 @@
 ---
-name: Shiny App on Notchpeak 
+name: RStudio Server on Notchpeak 
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch [Shiny App] an IDE for [R] on one node of the [Notchpeak cluster].
+  This app will launch [RStudio Server] an IDE for [R] on one node of the [Notchpeak cluster].
+ 
+  To start the job promptly, use notchpeak-shared account and partition.
 
-  [Shiny App]: https://shiny.rstudio.com/
+  [GPU specification] is optional for the partitions that have them.
+
+  [RStudio Server]: https://www.rstudio.com/products/rstudio-server/
   [R]: https://www.r-project.org/
+  [Notchpeak cluster]: https://www.chpc.utah.edu/documentation/policies/2.1GeneralHPCClusterPolicies.php#Pol2.1.6
+  [GPU specification]: https://www.chpc.utah.edu/documentation/guides/gpus-accelerators.php#overview
