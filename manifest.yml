@@ -6,11 +6,6 @@ role: batch_connect
 description: |
   This app will launch [RStudio Server] an IDE for [R] on one node of the [Sol cluster].
  
-  To start the job promptly, use notchpeak-shared account and partition.
-
-  [GPU specification] is optional for the partitions that have them.
-
   [RStudio Server]: https://www.rstudio.com/products/rstudio-server/
   [R]: https://www.r-project.org/
   [Sol cluster]: https://confluence.cc.lehigh.edu/display/hpc/Sol
-  [GPU specification]: https://confluence.cc.lehigh.edu/display/hpc/Sol
