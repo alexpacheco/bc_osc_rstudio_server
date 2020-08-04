@@ -13,8 +13,8 @@ setup_env () {
   # SINGULARITY_BINDPATH is being used to bind all RStudio's requirements from
   # the host into the guest, and so those values may vary between sites.
 
-  module use --append /share/Apps/share/Modules/modulefiles/singularity
-  module load rstudio/<%= context.version %>
+  module use /uufs/chpc.utah.edu/sys/installdir/rstudio-singularity/modulefiles
+  module load singularity rstudio_singularity/<%= context.version %>
 }
 setup_env
 
@@ -35,6 +35,10 @@ sed 's/^ \{2\}//' > "${RSESSION_WRAPPER_FILE}" << EOL
   # Log all output from this script
   export RSESSION_LOG_FILE="${RSTUDIO_SINGULARITY_HOST_MNT}${PWD}/rsession.log"
 
+# workaround over Bob's hard coded http_proxy in the container
+#  export http_proxy="http://uaserve.cc.vt.edu:8080"
+#  export https_proxy="http://uaserve.cc.vt.edu:8080"
+
   exec &>>"\${RSESSION_LOG_FILE}"
 
   # Launch the original command
@@ -48,21 +52,28 @@ chmod 700 "${RSESSION_WRAPPER_FILE}"
 # Set working directory to home directory
 cd "${HOME}"
 
-export TMPDIR="$(mktemp -d)"
+# Output debug info
+module list
 
-mkdir -p "$TMPDIR/rstudio-server"
-python -c 'from uuid import uuid4; print(uuid4())' > "$TMPDIR/rstudio-server/secure-cookie-key"
-chmod 0600 "$TMPDIR/rstudio-server/secure-cookie-key"
+# echo old TMPDIR $TMPDIR
+export TMPDIR=`mktemp -d`
+# echo new TMPDIR $TMPDIR
+
+## fix rstudio active session error on start
+find ~/.rstudio/sessions/active/*/session-persistent-state -type f | xargs sed -i '' -e 's/abend="1"/abend="0"/'
 
 set -x
 # Launch the RStudio Server
 echo "Starting up rserver..."
 
-singularity run -B "$TMPDIR:/tmp" "$RSTUDIO_SERVER_IMAGE" \
- --www-port "${port}" \
- --auth-none 0 \
- --auth-pam-helper-path "${RSTUDIO_AUTH}" \
- --auth-encrypt-password 0 \
- --rsession-path "${RSESSION_WRAPPER_FILE}"
+singularity exec -B "$TMPDIR:/tmp" "$RSTUDIO_SINGULARITY_IMAGE" rserver \
+ --www-port="${port}" \
+ --auth-none=0 \
+ --auth-pam-helper-path="${RSTUDIO_AUTH}" \
+ --auth-encrypt-password=0 \
+ --rsession-path="${RSESSION_WRAPPER_FILE}" \
+ --server-app-armor-enabled=0
 
-echo 'Singularity has exited...'
+# note, rserver in the container will start with the user space environment defined on host
+# BUT, the rsession starts on limited environment, only related to R = no SLURM*, http*, ...
+# so anything we want to pass to rsession needs to be set in $RSESSION_WRAPPER_FILE

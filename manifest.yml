@@ -1,10 +1,10 @@
 ---
-name: RStudio Server on Notchpeak 
+name: RStudio Server 
 category: Interactive Apps
 subcategory: Servers
 role: batch_connect
 description: |
-  This app will launch [RStudio Server] an IDE for [R] on one node of the [Notchpeak cluster].
+  This app will launch [RStudio Server] an IDE for [R] on one node of the [Sol cluster].
  
   To start the job promptly, use notchpeak-shared account and partition.
 
@@ -12,5 +12,5 @@ description: |
 
   [RStudio Server]: https://www.rstudio.com/products/rstudio-server/
   [R]: https://www.r-project.org/
-  [Notchpeak cluster]: https://www.chpc.utah.edu/documentation/policies/2.1GeneralHPCClusterPolicies.php#Pol2.1.6
-  [GPU specification]: https://www.chpc.utah.edu/documentation/guides/gpus-accelerators.php#overview
+  [Sol cluster]: https://confluence.cc.lehigh.edu/display/hpc/Sol
+  [GPU specification]: https://confluence.cc.lehigh.edu/display/hpc/Sol
