@@ -11,14 +11,13 @@ attributes:
     widget: "number_field"
     label: "Number of cores"
     value: 1
-    help: "Maximum number of CPU cores on Sol varies from 19 to 36."
+    help: "Maximum number of CPU cores on Sol varies from 16 to 36."
     min: 1
     max: 36
   bc_num_hours:
     label: "Number of hours"
     value: 1   
     min: 1
-    max: 48
     help: "Maximum wall time on Sol is either 48 hours or 72 hours"
   bc_account:
     label: "Account"
@@ -59,9 +58,10 @@ attributes:
       - [ "R 4.0.2 GeoSpatial", "r-4.0.2-geo"]
 form:
   - version
-  - num_cores
-  - bc_num_hours
   - bc_account
+  - num_cores
+  - bc_num_slots
+  - bc_num_hours
   - custom_queue
   - bc_email_on_started
 
